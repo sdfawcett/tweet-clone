@@ -34,19 +34,49 @@ var joinedDate = document.getElementById('joined-date');
 var following = document.getElementById('following');
 var followers = document.getElementById('followers');
 var followersRounded = numFormatter(user1.followerCount);
-var avatar = document.getElementById("avatar").style.cssText+=`background-image:url(${user1.avatarURL})`;
 var wallpaper = document.getElementById("wallpaper").style.cssText+=`background-image:url(${user1.coverPhotoURL}); background-size:cover;`;
-var tweetInfo = document.getElementById('tweet-info');
-var tweetBody = document.getElementById('tweet-body');
+var tweetsContainer = document.getElementById('container-tweets');
 
+//fill dom elements with json data
 displayNameOne.innerHTML = `${user1.displayName}`;
-displayNameTwo.innerHTML = `${user1.displayName}`;
+displayNameTwo.innerHTML = `<span class="pr-5">${user1.displayName}</span><i class="fa-solid fa-circle-check"></i>`;
 usernameOne.innerHTML = `${user1.userName}`;
-joinedDate.innerHTML = `Joined ${user1.joinedDate}`;
+joinedDate.innerHTML = `<i class="fa-solid fa-calendar-days pr-5"></i>Joined ${user1.joinedDate}`;
 following.innerHTML = `<b>${user1.followingCount}</b> Following`;
 followers.innerHTML = `<b>${followersRounded}</b> Followers`;
-tweetInfo.innerHTML = `<span class="tweet-user">${user1.displayName}</span><span>${user1.userName}</span>`;
+/*
+tweetInfo.innerHTML = `<span class="tweet-user">${user1.displayName}</span><span>${user1.userName}</span><span>${user1.tweets[0].timestamp}</span>`;
 tweetBody.innerHTML = `${user1.tweets[0].text}`;
+*/
+var tweetDiv = document.createElement("div");
+tweetDiv.classList.add("tweet-div")
+tweetDiv.innerHTML = `
+    <div class="tweet-avatar"><img src="${user1.avatarURL}"/></div>
+    <div class="tweet-inner-container">
+        <div class="tweet-details">
+            <div class="tweet-display-name">
+                <p>${user1.displayName}
+                    <span class="fa-stack">
+                        <i class="fa fa-circle-thin fa-stack-1x"></i>
+                        <i class="fa fa-check-circle fa-stack-1x"></i>
+                    </span> 
+                </p>
+            </div>
+            <div class="subtext user-name">${user1.userName}</div>
+            <div class="tweet-created">${user1.tweets[0].timestamp}</div>
+        </div>
+        <div class="tweet-body">
+            <p>${user1.tweets[0].text}</p>
+        </div>
+        <div class="tweet-icons">
+            <div class="tweet-icon reply"><a href="#"><i class="fa fa-comment"></i></a></div>
+            <div class="tweet-icon retweet"><a href="#"><i class="fa fa-retweet"></i></a></div>
+            <div class="tweet-icon like"><a href="#"><i class="fa fa-heart"></i></a></div>
+            <div class="tweet-icon share"><a href="#"><i class="fa fa-upload"></i></a></div>
+        </div>
+    </div>
+`;
+tweetsContainer.appendChild(tweetDiv);
 
 function numFormatter(num) {
     if(num > 999 && num < 1000000){

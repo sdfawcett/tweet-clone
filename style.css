@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    transition: background-color 0.6s ease, color 0.3s ease, border-color 0.6s ease;
+    /*transition: background-color 0.6s ease, color 0.3s ease, border-color 0.6s ease;*/
 }
 
 body {
@@ -27,9 +27,10 @@ body {
     --classic-blue: 29, 161, 241;
     --avocado-green: 25, 191, 100;
     --orange-sun: 255, 174, 30;
+    --twitter-blue: 29, 154, 231;
     /* --- */
 
-    --accent-color-rgb: var(--orange-sun);
+    --accent-color-rgb: var(--twitter-blue);
     --accent-color: rgb(var(--accent-color-rgb));
 }
 
@@ -180,11 +181,11 @@ a {
 .btn {
     font-weight: 600;
     border: 1px solid var(--accent-color);
-    color: var(--accent-color);
+    color: var(--primary-color);
     padding: 12px 20px;
     border-radius: 99999px;
     cursor: pointer;
-    background-color: rgba(var(--accent-color-rgb), 0);
+    background-color: rgba(var(--accent-color-rgb), 1);
     transition: background-color 0.2s;
 }
 
@@ -193,6 +194,7 @@ a {
 }
 
 /* ------ BIO ------ */
+
 .bio {
     padding: 15px;
     padding-bottom: 0px;
@@ -236,6 +238,130 @@ a {
     border-bottom: 3px solid var(--accent-color);
 }
 
+/*---------------------*/
+/* TWITTER CARDS */
+/*---------------------*/
+
+#container-tweets {
+    display: flex;
+    flex-direction: column;
+}
+
+.tweet-div {
+    display: flex;
+    padding-top: 10px;
+}
+
+/*
+.tweet-div:not(:last-child) {
+    border-bottom: 1px solid var(--darkGrey);
+}
+*/
+
+.tweet-avatar {
+    padding: 0 10px 15px 15px;
+}
+
+.tweet-avatar img {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.tweet-inner-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.tweet-details {
+    display: flex;
+    align-items: center;
+}
+
+.tweet-created {
+    font-size: .8rem;
+    padding-left: 5px;
+}
+
+.tweet-display-name p{
+    color: var(--offWhite);
+    font-size: .9rem;
+    font-weight: 800;
+}
+
+.tweet-display-name p span {
+    margin-left: -10px;
+}
+
+.tweet-created {
+    color: var(--grey);
+}
+
+.tweet-body {
+    padding-right: 10px;
+}
+
+.tweet-body p{
+    color: var(--offWhite);
+    font-size: .9rem;
+}
+
+/* ---------- tweet icons ---------- */
+.tweet-icons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.tweet-icon {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transition: ease-in .3s;
+}
+
+.reply:hover, .share:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+    transition: ease-in .3s;
+}
+
+.retweet:hover {
+    background-color: rgba(23, 191, 99, 0.15);
+    transition: ease-in .3s;
+}
+
+.like:hover {
+    background-color: rgba(224, 36, 94, 0.15);
+    transition: ease-in .3s;
+}
+
+.tweet-icon a {
+    color: var(--grey);
+    padding: 0 25px;
+    transition: ease-in .3s;
+}
+
+.reply a:hover, .share a:hover {
+    color: var(--lightBlue);
+    transition: ease-in .3s;
+}
+
+.retweet a:hover {
+    color: var(--green);
+    transition: ease-in .3s;
+}
+
+.like a:hover {
+    color: var(--red);
+    transition: ease-in .3s;
+}
+
 /* -------------------- */
 /* OTHER */
 /* -------------------- */
@@ -250,6 +376,18 @@ a {
 button {
     padding: 10px;
     cursor: pointer;
+}
+
+/*--------------------*/
+/*HELPERS*/
+/*--------------------*/
+
+.pr-5 {
+    padding-right:5px;
+}
+
+.pr-15 {
+    padding-right:15px;
 }
 
 /*Card CSS*/
@@ -306,7 +444,6 @@ button {
     align-items: center;
     gap: 3px;
     padding: 1rem 0;
-    border-bottom: 1px solid #38444c;
   }
   .card .tweet-info span, .card .tweet-meta span {
     font-size: 0.85rem;
