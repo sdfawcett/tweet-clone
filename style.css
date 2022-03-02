@@ -250,6 +250,11 @@ a {
 .tweet-div {
     display: flex;
     padding-top: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tweet-div:last-child {
+    border-bottom:none;
 }
 
 /*
@@ -369,7 +374,7 @@ a {
     margin: auto;
     border: 1px solid var(--border-color);
     width: 600px;
-    margin-bottom: 150px;
+    text-align: right;
     padding: 10px;
 }
 
