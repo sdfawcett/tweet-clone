@@ -15,11 +15,11 @@
         },
         {
             text: 'Starship to the moon',
-            timestamp: '2/09/2021 18:37:12'
+            timestamp: '2/09/2020 18:37:12'
         },
         {
             text: 'Out on launch pad, engine swap underway',
-            timestamp: '2/09/2021 12:11:51'
+            timestamp: '2/09/2019 12:11:51'
         }
     ]
 };
@@ -36,7 +36,6 @@ var followers = document.getElementById('followers');
 var followersRounded = numFormatter(user1.followerCount);
 var wallpaper = document.getElementById("wallpaper").style.cssText+=`background-image:url(${user1.coverPhotoURL}); background-size:cover;`;
 var tweetsContainer = document.getElementById('container-tweets');
-var tweetCreated = Date.parse(user1.tweets[0].timestamp);
 
 //fill dom elements with json data
 displayNameOne.innerHTML = `${user1.displayName}`;
@@ -46,129 +45,131 @@ joinedDate.innerHTML = `<i class="fa-solid fa-calendar-days pr-5"></i>Joined ${u
 following.innerHTML = `<b>${user1.followingCount}</b> Following`;
 followers.innerHTML = `<b>${followersRounded}</b> Followers`;
 
-/*convert json timestamp to millisecnds, then compare time elapsed between the timestamp created date and "now"*/
 
-// The time now
-var now = new Date().getTime();
+for (var i = 0; i < user1.tweets.length; i++) {
+  var tweetDiv = document.createElement("div");
+  var tweetCreated = Date.parse(user1.tweets[i].timestamp);
+  tweetDiv.classList.add("tweet-div");
 
-// The difference between now and created
-var howLongAgo = tweetCreated - now;
+  /*convert json timestamp to millisecnds, then compare time elapsed between the timestamp created date and "now"*/
 
-var getHumanTime = function (timestamp) {
+  // The time now
+  var now = new Date().getTime();
 
-	// Convert to a positive integer
-	var time = Math.abs(timestamp);
+  // The difference between now and created
+  var howLongAgo = tweetCreated - now;
 
-	// Define humanTime and units
-	var humanTime, units;
+  var getHumanTime = function (timestamp) {
 
-	// If there are years
-	if (time > (1000 * 60 * 60 * 24 * 365)) {
-		humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 365), 10);
-    // make sure human time is grammatically correct
-      if (humanTime === 1) {
-        units = 'year';
-      } else {
-        units = 'years';
-      }
-	}
+    // Convert to a positive integer
+    var time = Math.abs(timestamp);
 
-	// If there are months
-	else if (time > (1000 * 60 * 60 * 24 * 30)) {
-		humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 30), 10);
-    // make sure human time is grammatically correct
-      if (humanTime === 1) {
-        units = 'month';
-      } else {
-        units = 'months';
-      }
-	}
+    // Define humanTime and units
+    var humanTime, units;
 
-	// If there are weeks
-	else if (time > (1000 * 60 * 60 * 24 * 7)) {
-		humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 7), 10);
-		// make sure human time is grammatically correct
-      if (humanTime === 1) {
-        units = 'week';
-      } else {
-        units = 'weeks';
-      }
-	}
+    // If there are years
+    if (time > (1000 * 60 * 60 * 24 * 365)) {
+      humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 365), 10);
+      // make sure human time is grammatically correct
+        if (humanTime === 1) {
+          units = 'year';
+        } else {
+          units = 'years';
+        }
+    }
 
-	// If there are days
-	else if (time > (1000 * 60 * 60 * 24)) {
-		humanTime = parseInt(time / (1000 * 60 * 60 * 24), 10);
-		// make sure human time is grammatically correct
-      if (humanTime === 1) {
-        units = 'day';
-      } else {
-        units = 'days';
-      }
-	}
+    // If there are months
+    else if (time > (1000 * 60 * 60 * 24 * 30)) {
+      humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 30), 10);
+      // make sure human time is grammatically correct
+        if (humanTime === 1) {
+          units = 'month';
+        } else {
+          units = 'months';
+        }
+    }
 
-	// If there are hours
-	else if (time > (1000 * 60 * 60)) {
-		humanTime = parseInt(time / (1000 * 60 * 60), 10);
-		// make sure human time is grammatically correct
-      if (humanTime === 1) {
-        units = 'hour';
-      } else {
-        units = 'hours';
-      }
-	}
+    // If there are weeks
+    else if (time > (1000 * 60 * 60 * 24 * 7)) {
+      humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 7), 10);
+      // make sure human time is grammatically correct
+        if (humanTime === 1) {
+          units = 'week';
+        } else {
+          units = 'weeks';
+        }
+    }
 
-	// If there are minutes
-	else if (time > (1000 * 60)) {
-		humanTime = parseInt(time / (1000 * 60), 10);
-		// make sure human time is grammatically correct
-      if (humanTime === 1) {
-        units = 'minute';
-      } else {
-        units = 'minutes';
-      }
-	}
+    // If there are days
+    else if (time > (1000 * 60 * 60 * 24)) {
+      humanTime = parseInt(time / (1000 * 60 * 60 * 24), 10);
+      // make sure human time is grammatically correct
+        if (humanTime === 1) {
+          units = 'day';
+        } else {
+          units = 'days';
+        }
+    }
 
-	// Otherwise, use seconds
-	else {
-		humanTime = parseInt(time / (1000), 10);
-		units = 'seconds';
-	}
+    // If there are hours
+    else if (time > (1000 * 60 * 60)) {
+      humanTime = parseInt(time / (1000 * 60 * 60), 10);
+      // make sure human time is grammatically correct
+        if (humanTime === 1) {
+          units = 'hour';
+        } else {
+          units = 'hours';
+        }
+    }
 
-	return humanTime + ' ' + units;
+    // If there are minutes
+    else if (time > (1000 * 60)) {
+      humanTime = parseInt(time / (1000 * 60), 10);
+      // make sure human time is grammatically correct
+        if (humanTime === 1) {
+          units = 'minute';
+        } else {
+          units = 'minutes';
+        }
+    }
 
-};
+    // Otherwise, use seconds
+    else {
+      humanTime = parseInt(time / (1000), 10);
+      units = 'seconds';
+    }
 
-/*
-tweetInfo.innerHTML = `<span class="tweet-user">${user1.displayName}</span><span>${user1.userName}</span><span>${user1.tweets[0].timestamp}</span>`;
-tweetBody.innerHTML = `${user1.tweets[0].text}`;
-*/
-var tweetDiv = document.createElement("div");
-tweetDiv.classList.add("tweet-div")
-tweetDiv.innerHTML = `
-    <div class="tweet-avatar"><img src="${user1.avatarURL}"/></div>
-    <div class="tweet-inner-container">
-        <div class="tweet-details">
-            <div class="tweet-display-name">
-                <p>${user1.displayName}
-                    <i class="fa-solid fa-circle-check"></i> 
-                    <span class="pl-15 subtext">${user1.userName}</span>
-                    <span class="pl-15 subtext">${getHumanTime(howLongAgo)}</span>
-                </p>
-            </div>
-            
-        </div>
-        <div class="tweet-body">
-            <p>${user1.tweets[0].text}</p>
-        </div>
-        <div class="tweet-icons">
-            <div class="tweet-icon reply"><a href="#"><i class="fa fa-comment"></i></a></div>
-            <div class="tweet-icon retweet"><a href="#"><i class="fa fa-retweet"></i></a></div>
-            <div class="tweet-icon like"><a href="#"><i class="fa fa-heart"></i></a></div>
-            <div class="tweet-icon share"><a href="#"><i class="fa fa-upload"></i></a></div>
-        </div>
-    </div>
-`;
-tweetsContainer.appendChild(tweetDiv);
+    return humanTime + ' ' + units;
+
+  };
+
+  //output tweet in dom
+  tweetDiv.innerHTML = `
+      <div class="tweet-avatar"><img src="${user1.avatarURL}"/></div>
+      <div class="tweet-inner-container">
+          <div class="tweet-details">
+              <div class="tweet-display-name">
+                  <p>${user1.displayName}
+                      <i class="fa-solid fa-circle-check"></i> 
+                      <span class="pl-15 subtext">${user1.userName}</span>
+                      <span class="pl-15 subtext">${getHumanTime(howLongAgo)}</span>
+                  </p>
+              </div>
+              
+          </div>
+          <div class="tweet-body">
+              <p>${user1.tweets[i].text}</p>
+          </div>
+          <div class="tweet-icons">
+              <div class="tweet-icon reply"><a href="#"><i class="fa fa-comment"></i></a></div>
+              <div class="tweet-icon retweet"><a href="#"><i class="fa fa-retweet"></i></a></div>
+              <div class="tweet-icon like"><a href="#"><i class="fa fa-heart"></i></a></div>
+              <div class="tweet-icon share"><a href="#"><i class="fa fa-upload"></i></a></div>
+          </div>
+      </div>
+  `;
+  tweetsContainer.appendChild(tweetDiv);
+}
 
 function numFormatter(num) {
     if(num > 999 && num < 1000000){
