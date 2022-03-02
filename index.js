@@ -36,6 +36,7 @@ var followers = document.getElementById('followers');
 var followersRounded = numFormatter(user1.followerCount);
 var wallpaper = document.getElementById("wallpaper").style.cssText+=`background-image:url(${user1.coverPhotoURL}); background-size:cover;`;
 var tweetsContainer = document.getElementById('container-tweets');
+var tweetCreated = Date.parse(user1.tweets[0].timestamp);
 
 //fill dom elements with json data
 displayNameOne.innerHTML = `${user1.displayName}`;
@@ -44,6 +45,99 @@ usernameOne.innerHTML = `${user1.userName}`;
 joinedDate.innerHTML = `<i class="fa-solid fa-calendar-days pr-5"></i>Joined ${user1.joinedDate}`;
 following.innerHTML = `<b>${user1.followingCount}</b> Following`;
 followers.innerHTML = `<b>${followersRounded}</b> Followers`;
+
+/*convert json timestamp to millisecnds, then compare time elapsed between the timestamp created date and "now"*/
+
+// The time now
+var now = new Date().getTime();
+
+// The difference between now and created
+var howLongAgo = tweetCreated - now;
+
+var getHumanTime = function (timestamp) {
+
+	// Convert to a positive integer
+	var time = Math.abs(timestamp);
+
+	// Define humanTime and units
+	var humanTime, units;
+
+	// If there are years
+	if (time > (1000 * 60 * 60 * 24 * 365)) {
+		humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 365), 10);
+    // make sure human time is grammatically correct
+      if (humanTime === 1) {
+        units = 'year';
+      } else {
+        units = 'years';
+      }
+	}
+
+	// If there are months
+	else if (time > (1000 * 60 * 60 * 24 * 30)) {
+		humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 30), 10);
+    // make sure human time is grammatically correct
+      if (humanTime === 1) {
+        units = 'month';
+      } else {
+        units = 'months';
+      }
+	}
+
+	// If there are weeks
+	else if (time > (1000 * 60 * 60 * 24 * 7)) {
+		humanTime = parseInt(time / (1000 * 60 * 60 * 24 * 7), 10);
+		// make sure human time is grammatically correct
+      if (humanTime === 1) {
+        units = 'week';
+      } else {
+        units = 'weeks';
+      }
+	}
+
+	// If there are days
+	else if (time > (1000 * 60 * 60 * 24)) {
+		humanTime = parseInt(time / (1000 * 60 * 60 * 24), 10);
+		// make sure human time is grammatically correct
+      if (humanTime === 1) {
+        units = 'day';
+      } else {
+        units = 'days';
+      }
+	}
+
+	// If there are hours
+	else if (time > (1000 * 60 * 60)) {
+		humanTime = parseInt(time / (1000 * 60 * 60), 10);
+		// make sure human time is grammatically correct
+      if (humanTime === 1) {
+        units = 'hour';
+      } else {
+        units = 'hours';
+      }
+	}
+
+	// If there are minutes
+	else if (time > (1000 * 60)) {
+		humanTime = parseInt(time / (1000 * 60), 10);
+		// make sure human time is grammatically correct
+      if (humanTime === 1) {
+        units = 'minute';
+      } else {
+        units = 'minutes';
+      }
+	}
+
+	// Otherwise, use seconds
+	else {
+		humanTime = parseInt(time / (1000), 10);
+		units = 'seconds';
+	}
+
+	return humanTime + ' ' + units;
+
+};
+console.log(getHumanTime(howLongAgo));
 /*
 tweetInfo.innerHTML = `<span class="tweet-user">${user1.displayName}</span><span>${user1.userName}</span><span>${user1.tweets[0].timestamp}</span>`;
 tweetBody.innerHTML = `${user1.tweets[0].text}`;
