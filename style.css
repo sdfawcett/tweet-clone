@@ -378,6 +378,10 @@ button {
     cursor: pointer;
 }
 
+.fa-circle-check {
+    color: var(--accent-color);
+}
+
 /*--------------------*/
 /*HELPERS*/
 /*--------------------*/
@@ -386,8 +390,16 @@ button {
     padding-right:5px;
 }
 
+.pl-5 {
+    padding-left:5px;
+}
+
 .pr-15 {
     padding-right:15px;
+}
+
+.pl-15 {
+    padding-left:15px;
 }
 
 /*Card CSS*/

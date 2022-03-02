@@ -137,7 +137,7 @@ var getHumanTime = function (timestamp) {
 	return humanTime + ' ' + units;
 
 };
-console.log(getHumanTime(howLongAgo));
+
 /*
 tweetInfo.innerHTML = `<span class="tweet-user">${user1.displayName}</span><span>${user1.userName}</span><span>${user1.tweets[0].timestamp}</span>`;
 tweetBody.innerHTML = `${user1.tweets[0].text}`;
@@ -150,14 +150,12 @@ tweetDiv.innerHTML = `
         <div class="tweet-details">
             <div class="tweet-display-name">
                 <p>${user1.displayName}
-                    <span class="fa-stack">
-                        <i class="fa fa-circle-thin fa-stack-1x"></i>
-                        <i class="fa fa-check-circle fa-stack-1x"></i>
-                    </span> 
+                    <i class="fa-solid fa-circle-check"></i> 
+                    <span class="pl-15 subtext">${user1.userName}</span>
+                    <span class="pl-15 subtext">${getHumanTime(howLongAgo)}</span>
                 </p>
             </div>
-            <div class="subtext user-name">${user1.userName}</div>
-            <div class="tweet-created">${user1.tweets[0].timestamp}</div>
+            
         </div>
         <div class="tweet-body">
             <p>${user1.tweets[0].text}</p>
